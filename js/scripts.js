@@ -7,6 +7,8 @@ jQuery(document).ready(function($){
 		fms_check_status();
 	}
 	
-	$('.fms').FBtoMaropost(); //add selectors for triggers
+	$(document).on('click', '.fms', function(){
+		$(this).FBtoMaropost();
+	});
 	
 });

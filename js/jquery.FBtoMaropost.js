@@ -104,7 +104,7 @@ function fms_maropost_request(userInfo){
 					 'contact_fields_email' : userInfo.email };
 
 
-		var request = window.location.origin + "/wp-content/plugins/facebook-maropost-subscription-1.2.3/includes/maropost-api.php";
+		var request = window.location.origin + "/wp-content/plugins/facebook-maropost-subscription/includes/maropost-api.php";
 
 		jQuery.ajax({
 			url: request,
