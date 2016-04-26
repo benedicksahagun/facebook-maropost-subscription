@@ -7,6 +7,6 @@ jQuery(document).ready(function($){
 		fms_check_status();
 	}
 	
-	$('.fms').FBtoMaropost(); //add selectors that shows the optin
+	$('.fms').FBtoMaropost(); //add selectors for triggers
 	
 });

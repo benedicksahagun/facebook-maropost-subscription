@@ -66,7 +66,7 @@ function fms_check_status(){
 
 function fms_start(){
 	
-	if(jQuery('#fms-settings').data('fb-logged') == 'false'){
+	if(jQuery('#fms-settings').data('fb-logged') == false){
 		FB.login(function(response) {
 			if (response.authResponse){
 			    fms_fb_auth();
@@ -104,7 +104,7 @@ function fms_maropost_request(userInfo){
 					 'contact_fields_email' : userInfo.email };
 
 
-		var request = window.location.origin + "/wp-content/plugins/facebook-maropost-subscription-1.2.1/includes/maropost-api.php";
+		var request = window.location.origin + "/wp-content/plugins/facebook-maropost-subscription-1.2.3/includes/maropost-api.php";
 
 		jQuery.ajax({
 			url: request,
