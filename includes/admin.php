@@ -10,7 +10,7 @@ function fms_settings_page(){
 
     ob_start(); ?>
 		<form action="options.php" method="post" id="<?php echo $plugin_id; ?>_options_form" name="<?php echo $plugin_id; ?>_options_form">
-			<h2>FMS Settings v1.2.3</h2>
+			<h2>FMS Settings v1.3.0</h2>
 			<?php echo wp_nonce_field('update-options'); ?>
 			<div class="panel">
 				<table class="form-table" width="100%" cellpadding="10">
