@@ -3,23 +3,23 @@
 * Author: Benedick Sahagun
 * ----------------------*/
 
-(function( $ ) {
- 
-    $.fn.FBtoMaropost = function( options ) {
- 
+var fms_settings = {
+	'popup' : 'div[class*="optin-monster-"]'
+};
+
+
+function FBtoMaropost(selector, settings){
+	if(typeof settings !== 'undefined'){
+		fms_settings = settings;
+	}
 	
-		this.click(function(event){
+	jQuery(document).on('click', selector , function(){
+		
+		event.preventDefault();
+		fms_start();
+	});
+}
 
-			fms_start();
-			event.preventDefault();
-
-		});
-
-		return this;
- 
-    };
- 
-}( jQuery ));
 
 function fms_init(){
 	
@@ -93,7 +93,6 @@ function fms_fb_auth() {
 
 function fms_maropost_request(userInfo){
 	if(userInfo){
-		console.log(userInfo);
 
 		var credentials = jQuery('#fms-settings');
 		
@@ -111,7 +110,7 @@ function fms_maropost_request(userInfo){
 			type: "POST",
 			data: data,
 			success: function(response){
-				alert("Thank you for subscribing!");
+				jQuery(fms_settings.popup).hide();
 			}
 		});
 

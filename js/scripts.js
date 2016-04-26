@@ -7,8 +7,6 @@ jQuery(document).ready(function($){
 		fms_check_status();
 	}
 	
-	$(document).on('click', '.fms', function(){
-		$(this).FBtoMaropost();
-	});
-	
+	FBtoMaropost('.fms'); 
 });
+	
