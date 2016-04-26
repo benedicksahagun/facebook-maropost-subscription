@@ -21,19 +21,9 @@
  
 }( jQuery ));
 
-function fms_init(app_id){
-	window.fbAsyncInit = function(){
-		FB.init({
-			appId  : app_id,
-			status : true, 
-			cookie : true,
-			xfbml  : true,  
-			version:  'v2.0',
-		});
-
-
-		fms_check_status();
-	};
+function fms_init(){
+	
+	fms_check_status();
 
 	(function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -47,16 +37,31 @@ function fms_init(app_id){
 
 function fms_check_status(){
 
-	FB.getLoginStatus(function(response) {
+	var app_id = jQuery('#fms-settings').data('fb-app-id');
 
-		if (response.status == 'connected') {
-			jQuery('#fms-settings').attr('data-fb-logged','true');
-		} 
+	window.fbAsyncInit = function(){
+		FB.init({
+			appId  : app_id,
+			status : true, 
+			cookie : true,
+			xfbml  : true,  
+			version:  'v2.0',
+		});
 
-		else{
-			jQuery('#fms-settings').attr('data-fb-logged','false');
-		}
-	});
+
+		FB.getLoginStatus(function(response) {
+
+			if (response.status == 'connected') {
+				jQuery('#fms-settings').attr('data-fb-logged','true');
+			} 
+
+			else{
+				jQuery('#fms-settings').attr('data-fb-logged','false');
+			}
+		});
+	};
+
+	
 }
 
 function fms_start(){
@@ -99,7 +104,7 @@ function fms_maropost_request(userInfo){
 					 'contact_fields_email' : userInfo.email };
 
 
-		var request = window.location.origin + "/wp-content/plugins/facebook-maropost-subscription-1.1.0/includes/maropost-api.php";
+		var request = window.location.origin + "/wp-content/plugins/facebook-maropost-subscription-1.2.1/includes/maropost-api.php";
 
 		jQuery.ajax({
 			url: request,
