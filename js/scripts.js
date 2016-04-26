@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
 
-	if( typeof jQuery("#facebook-jssdk").attr('src') !== 'undefined'){
+	if( typeof jQuery("#facebook-jssdk").attr('src') == 'undefined'){
 		fms_init();
 	}
 	
