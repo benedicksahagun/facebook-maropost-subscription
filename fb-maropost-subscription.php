@@ -3,7 +3,7 @@
 /*-------------------------------------
 * Plugin Name: Facebook to Maropost Subscription
 * Author: Benedick Sahagun
-* Version: 1.1.0
+* Version: 1.2.1
 * Description: Add Facebook Optin to your site for maropost Subscription
 * --------------------------------------- */
 
