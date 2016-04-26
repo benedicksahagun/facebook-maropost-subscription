@@ -7,21 +7,11 @@
  
     $.fn.FBtoMaropost = function( options ) {
  
-		var settings = $.extend({
+	
+		this.click(function(event){
 
-			popup: "#fms-popup",
-			authButton : ".fms-auth"
-
-		}, options );
-
-		this.click(function(){
-			$(settings.popup).toggleClass('active');
-		});
-
-		$(settings.popup).find(settings.authButton).click(function(){
-
-			var credentials = $(settings.popup).find('#fms-settings');
-			fms_start($(credentials).data('fb-app-id'), settings);
+			fms_start($('#fms-settings').data('fb-app-id'));
+			event.preventDefault();
 
 		});
 
@@ -38,12 +28,12 @@ function fms_init(){
 
 }
 
-function fms_start(app_id, settings){
+function fms_start(app_id){
 	FB.init({
 		appId  : app_id,
-		status : true, // check login status
-		cookie : true, // enable cookies to allow the server to access the session
-		xfbml  : true,  // parse XFBML
+		status : true, 
+		cookie : true,
+		xfbml  : true,  
 		version:  'v2.0',
 	});
 
@@ -51,12 +41,12 @@ function fms_start(app_id, settings){
 	FB.getLoginStatus(function(response) {
 
 		if (response.status == 'connected') {
-			fms_fb_auth(response, settings);
+			fms_fb_auth(response);
 		} 
 		else {
 			FB.login(function(response) {
 				if (response.authResponse){
-				    fms_fb_auth(response, settings);
+				    fms_fb_auth(response);
 				} 
 				else {
 			    	console.log('Auth cancelled.')
@@ -68,20 +58,20 @@ function fms_start(app_id, settings){
 	});
 }
 
-function fms_fb_auth(response, settings) {
+function fms_fb_auth(response) {
 	FB.api('/me',  { locale: 'en_US', fields: 'name, email' }, function(userInfo) {
 		if(userInfo){
-			fms_maropost_request(userInfo, settings);
+			fms_maropost_request(userInfo);
 		}
 	});
 }
 
 
-function fms_maropost_request(userInfo, settings){
+function fms_maropost_request(userInfo){
 	if(userInfo){
 		console.log(userInfo);
 
-		var credentials = jQuery(settings.popup).find('#fms-settings');
+		var credentials = jQuery('#fms-settings');
 		
 		var data = { 'maropost_acc_num' : jQuery(credentials).data('mp-acc-id'),
 					 'maropost_auth_key' : jQuery(credentials).data('mp-auth-key'),
@@ -90,7 +80,7 @@ function fms_maropost_request(userInfo, settings){
 					 'contact_fields_email' : userInfo.email };
 
 
-		var request = window.location.origin + "/wp-content/plugins/facebook-maropost-subscription-1.0.0/includes/maropost-api.php";
+		var request = window.location.origin + "/wp-content/plugins/facebook-maropost-subscription-1.1.0/includes/maropost-api.php";
 
 		jQuery.ajax({
 			url: request,
